@@ -111,6 +111,7 @@ const Template = ({ label, ...args }: Record<string, string>) => {
 
   const connectionHandler = graph.getPlugin<ConnectionHandler>('ConnectionHandler')!;
   // Implements the connect preview, using the configured edge style
+  // NOTE : Connection preview is innacurate on terminal snapping
   connectionHandler.createEdgeState = function (_me) {
     const edge = graph.createEdge(null, null!, null, null, null);
     return new CellState(this.graph.view, edge, this.graph.getCellStyle(edge));
