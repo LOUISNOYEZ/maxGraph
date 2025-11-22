@@ -1,3 +1,4 @@
+import { dirname, join } from "path";
 /*
 Copyright 2023-present The maxGraph project Contributors
 
@@ -25,12 +26,12 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-storysource',
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-storysource"),
   ],
   framework: {
-    name: '@storybook/html-vite',
+    name: getAbsolutePath("@storybook/html-vite"),
     options: {},
   },
   docs: {
@@ -38,3 +39,7 @@ const config: StorybookConfig = {
   },
 };
 export default config;
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}
