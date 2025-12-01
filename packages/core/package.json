@@ -64,13 +64,8 @@
     "test-check": "tsc --noEmit --project tsconfig.test.json"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "~0.18.2",
-    "@swc/core": "~1.15.3",
-    "@swc/jest": "~0.2.39",
-    "jest": "~30.2.0",
-    "jest-environment-jsdom": "~30.2.0",
-    "npm-run-all": "~4.1.5",
     "madge": "~8.0.0",
+    "npm-run-all": "~4.1.5",
     "rimraf": "~6.0.1",
     "typedoc": "~0.28.13",
     "vite": "^7.2.6",
