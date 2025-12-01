@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { test } from '@jest/globals';
+import { test } from 'vitest';
 import { createGraphWithoutPlugins } from '../../utils';
 import { Cell, CellState } from '../../../src';
 

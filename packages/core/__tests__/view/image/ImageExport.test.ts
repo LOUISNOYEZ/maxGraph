@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { expect, test } from '@jest/globals';
+import { expect, test } from 'vitest';
 import {
   CellOverlay,
   ImageBox,
@@ -91,9 +91,9 @@ test.each([false, true])(
   <scale scale="1" />
   <fillcolor color="#FFFFFF" />
   <strokecolor color="#000000" />
-  <image x="132" y="92" w="16" h="16" src="http://localhost/warning.png" aspect="0" flipH="0" flipV="0" />
+  <image x="132" y="92" w="16" h="16" src="http://localhost:3000/warning.png" aspect="0" flipH="0" flipV="0" />
   <scale scale="1" />
-  <image x="172" y="122" w="16" h="16" src="http://localhost/element.png" aspect="0" flipH="0" flipV="0" />`;
+  <image x="172" y="122" w="16" h="16" src="http://localhost:3000/element.png" aspect="0" flipH="0" flipV="0" />`;
 
     const expectedData = `<data>
   <fontfamily family="Arial,Helvetica,sans-serif" />
@@ -210,8 +210,8 @@ test.each([false, true])(
       ? ''
       : // should be probably put in a dedicated group, as done in the HTML page (GraphView.overlayPane)
         `
-    <image x="132" y="92" width="16" height="16" xlink:href="http://localhost/warning.png" preserveAspectRatio="none" pointer-events="none" />
-    <image x="172" y="122" width="16" height="16" xlink:href="http://localhost/element.png" preserveAspectRatio="none" pointer-events="none" />`;
+    <image x="132" y="92" width="16" height="16" xlink:href="http://localhost:3000/warning.png" preserveAspectRatio="none" pointer-events="none" />
+    <image x="172" y="122" width="16" height="16" xlink:href="http://localhost:3000/element.png" preserveAspectRatio="none" pointer-events="none" />`;
 
     const expectedData = `<svg xmlns="http://www.w3.org/2000/svg">
   <defs />

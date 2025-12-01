@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test } from 'vitest';
 import { DIRECTION_MASK, FONT_STYLE_MASK } from '../../src/util/Constants';
 import { matchBinaryMask } from '../../src/internal/utils';
 

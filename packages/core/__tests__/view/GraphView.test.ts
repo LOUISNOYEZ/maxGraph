@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { afterAll, beforeEach, describe, expect, test } from '@jest/globals';
+import { afterAll, beforeEach, describe, expect, test } from 'vitest';
 import {
   BaseGraph,
   CellState,
@@ -29,7 +29,7 @@ import {
 
 describe('getEdgeStyle ', () => {
   describe('isLoopStyleEnabled returns true', () => {
-    // use manual double instead of jest mock as this is a very simple use case, and we don't want to do any asserts on the fake method
+    // use manual double instead of vi mock as this is a very simple use case, and we don't want to do any asserts on the fake method
     class GraphViewLoopStyleEnabled extends GraphView {
       override isLoopStyleEnabled(): boolean {
         return true;
@@ -63,7 +63,7 @@ describe('getEdgeStyle ', () => {
       unregisterAllEdgeStyles();
     });
 
-    // use manual double instead of jest mock as this is a very simple use case, and we don't want to do any asserts on the fake method
+    // use manual double instead of vi mock as this is a very simple use case, and we don't want to do any asserts on the fake method
     class GraphViewLoopStyleDisabled extends GraphView {
       override isLoopStyleEnabled(): boolean {
         return false;

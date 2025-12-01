@@ -60,7 +60,7 @@
     "check:npm-package": "attw --pack",
     "docs:api": "typedoc src/index.ts",
     "prepack": "run-s clean build",
-    "test": "jest --runInBand",
+    "test": "vitest run",
     "test-check": "tsc --noEmit --project tsconfig.test.json"
   },
   "devDependencies": {

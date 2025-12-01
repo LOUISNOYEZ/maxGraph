@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test } from 'vitest';
 import { Editor, Geometry, EventObject, InternalEvent } from '../../src';
 import { ModelChecker } from '../serialization/utils';
 import { parseXml } from '../../src/util/xmlUtils';
@@ -142,7 +142,7 @@ describe('cycleAttribute', () => {
 describe('installDblClickHandler', () => {
   test('double-click handler has correct editor context', () => {
     const editor = new Editor(null!);
-    const mockExecute = jest.fn();
+    const mockExecute = vi.fn();
     editor.execute = mockExecute;
     editor.dblClickAction = 'testAction';
 

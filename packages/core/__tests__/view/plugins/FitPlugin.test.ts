@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { expect, test } from '@jest/globals';
+import { expect, test } from 'vitest';
 import { BaseGraph, FitPlugin, Rectangle } from '../../../src';
 
 const createContainer = (dimensions: {
@@ -53,7 +53,7 @@ describe('fitCenter', () => {
     const graph = new BaseGraph({ plugins: [FitPlugin] });
     const originalScale = 0.65;
     graph.view.scale = originalScale; // Set an initial scale to test it is returned and not changed
-    const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+    const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
     const scale = graph.getPlugin<FitPlugin>('fit')!.fitCenter();
     expect(scale).toBe(originalScale);
@@ -69,7 +69,7 @@ describe('fitCenter', () => {
 
     const graph = new BaseGraph({ container, plugins: [FitPlugin] });
     graph.view.setGraphBounds(new Rectangle(30, 20, 1000, 1000));
-    const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+    const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
     const scale = graph.getPlugin<FitPlugin>('fit')!.fitCenter();
     const expectedNewScale = 0.02;
@@ -86,7 +86,7 @@ describe('fitCenter', () => {
 
     const graph = new BaseGraph({ container, plugins: [FitPlugin] });
     graph.view.setGraphBounds(new Rectangle(-172, 67, 100, 200));
-    const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+    const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
     const scale = graph.getPlugin<FitPlugin>('fit')!.fitCenter({ margin: 20 });
     expect(scale).toBe(2.46);
@@ -102,7 +102,7 @@ describe('fitCenter', () => {
 
     const graph = new BaseGraph({ container, plugins: [FitPlugin] });
     graph.view.setGraphBounds(new Rectangle(70, -30, 100, 100));
-    const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+    const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
     const plugin = graph.getPlugin<FitPlugin>('fit')!;
     plugin.maxFitScale = 7;
@@ -117,7 +117,7 @@ describe('fit', () => {
   describe('no ignored dimensions', () => {
     test('container and graph have dimensions set to zero', () => {
       const graph = new BaseGraph({ plugins: [FitPlugin] });
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
       const scale = graph.getPlugin<FitPlugin>('fit')!.fit();
       expect(scale).toBe(1);
@@ -132,7 +132,7 @@ describe('fit', () => {
 
       const graph = new BaseGraph({ container, plugins: [FitPlugin] });
       graph.view.setGraphBounds(new Rectangle(30, 20, 100, 100));
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
       const scale = graph.getPlugin<FitPlugin>('fit')!.fit();
       const expectedNewScale = 0.18;
@@ -149,7 +149,7 @@ describe('fit', () => {
 
       const graph = new BaseGraph({ container, plugins: [FitPlugin] });
       graph.view.setGraphBounds(new Rectangle(30, 20, 100, 100));
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
       const plugin = graph.getPlugin<FitPlugin>('fit')!;
       const expectedNewScale = 0.5;
@@ -168,7 +168,7 @@ describe('fit', () => {
 
       const graph = new BaseGraph({ container, plugins: [FitPlugin] });
       graph.view.setGraphBounds(new Rectangle(70, -60, 100, 100));
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
       const scale = graph.getPlugin<FitPlugin>('fit')!.fit();
       const expectedNewScale = 4.78;
@@ -185,7 +185,7 @@ describe('fit', () => {
 
       const graph = new BaseGraph({ container, plugins: [FitPlugin] });
       graph.view.setGraphBounds(new Rectangle(70, -60, 100, 100));
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
       const plugin = graph.getPlugin<FitPlugin>('fit')!;
       plugin.maxFitScale = 3;
@@ -203,7 +203,7 @@ describe('fit', () => {
 
       const graph = new BaseGraph({ container, plugins: [FitPlugin] });
       graph.view.setGraphBounds(new Rectangle(0, 0, 100, 100));
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
       const scale = graph.getPlugin<FitPlugin>('fit')!.fit({ border: 60 });
       expect(scale).toBe(0.78);
@@ -219,8 +219,8 @@ describe('fit', () => {
 
       const graph = new BaseGraph({ container, plugins: [FitPlugin] });
       graph.view.setGraphBounds(new Rectangle(0, 0, 100, 100));
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
-      const setScaleSpy = jest.spyOn(graph.view, 'setScale');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
+      const setScaleSpy = vi.spyOn(graph.view, 'setScale');
 
       const scale = graph.getPlugin<FitPlugin>('fit')!.fit({ keepOrigin: true });
       const expectedNewScale = 1.98;
@@ -238,7 +238,7 @@ describe('fit', () => {
 
       const graph = new BaseGraph({ container, plugins: [FitPlugin] });
       graph.view.setGraphBounds(new Rectangle(0, 0, 100, 100));
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
       const scale = graph.getPlugin<FitPlugin>('fit')!.fit({ margin: 30 });
       expect(scale).toBe(1.68);
@@ -254,7 +254,7 @@ describe('fit', () => {
 
     const graph = new BaseGraph({ container, plugins: [FitPlugin] });
     graph.view.setGraphBounds(new Rectangle(70, -60, 1000, 100));
-    const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+    const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
     const scale = graph.getPlugin<FitPlugin>('fit')!.fit({ ignoreWidth: true });
     const expectedNewScale = 8;
@@ -270,7 +270,7 @@ describe('fit', () => {
 
     const graph = new BaseGraph({ container, plugins: [FitPlugin] });
     graph.view.setGraphBounds(new Rectangle(70, -60, 150, 300));
-    const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
+    const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
 
     const scale = graph.getPlugin<FitPlugin>('fit')!.fit({ ignoreHeight: true });
     const expectedNewScale = 5.72;
@@ -286,8 +286,8 @@ describe('fit', () => {
       graph.view.setGraphBounds(new Rectangle(70, -60, 150, 300));
       const originalScale = 0.7;
       graph.view.scale = originalScale; // Set an initial scale to test it is returned and not changed
-      const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
-      const setScaleSpy = jest.spyOn(graph.view, 'setScale');
+      const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
+      const setScaleSpy = vi.spyOn(graph.view, 'setScale');
 
       const scale = graph.getPlugin<FitPlugin>('fit')!.fit();
       expect(scale).toBe(originalScale);
@@ -310,8 +310,8 @@ describe('fit', () => {
         );
         const originalScale = 1.3;
         graph.view.scale = originalScale; // Set an initial scale to test it is returned and not changed
-        const scaleAndTranslateSpy = jest.spyOn(graph.view, 'scaleAndTranslate');
-        const setScaleSpy = jest.spyOn(graph.view, 'setScale');
+        const scaleAndTranslateSpy = vi.spyOn(graph.view, 'scaleAndTranslate');
+        const setScaleSpy = vi.spyOn(graph.view, 'setScale');
 
         const scale = graph.getPlugin<FitPlugin>('fit')!.fit();
         expect(scale).toBe(originalScale);

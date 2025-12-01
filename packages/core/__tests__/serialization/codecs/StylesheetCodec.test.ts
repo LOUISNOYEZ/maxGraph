@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import { registerCoreCodecs, Stylesheet, unregisterAllCodecs } from '../../../src';
-import { expect, test } from '@jest/globals';
+import { expect, test } from 'vitest';
 import { exportObject, importToObject } from './shared';
 
 // Prevents side effects between tests

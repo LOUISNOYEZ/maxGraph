@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test } from 'vitest';
 import { cloneCell, cloneCells, getOpposites } from '../../src/util/cellArrayUtils';
 import { IDENTITY_FIELD_NAME } from '../../src/util/Constants';
 import Cell from '../../src/view/cell/Cell';

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { afterEach, beforeAll, beforeEach, describe, expect, test } from '@jest/globals';
+import { afterEach, beforeAll, beforeEach, describe, expect, test } from 'vitest';
 import { createGraphWithoutContainer } from '../../utils';
 import {
   type AbstractGraph,
@@ -49,7 +49,7 @@ function buildXml(name: string): string {
     <Object />
   </Array>
   <Array as="multiplicities">
-    <Multiplicity type="rectangle" source="1" max="2" countError="Only 2 targets allowed" typeError="Only circle targets allowed">
+    <Multiplicity source="1" type="rectangle" max="2" countError="Only 2 targets allowed" typeError="Only circle targets allowed">
       <Array as="validNeighbors">
         <add value="circle" />
       </Array>
@@ -59,6 +59,8 @@ function buildXml(name: string): string {
     <ImageBox src="./collapsed-new.gif" width="10" height="10" as="collapsedImage" />
     <ImageBox src="./expanded.gif" width="9" height="9" as="expandedImage" />
   </Object>
+  <Rectangle _x="123" _y="453" _width="60" _height="60" as="pageFormat" />
+  <ImageBox src="./warning.gif" width="16" height="16" as="warningImage" />
   <GraphDataModel as="model">
     <root>
       <Cell id="0">
@@ -88,8 +90,6 @@ function buildXml(name: string): string {
       <add value="#446299" as="fontColor" />
     </add>
   </Stylesheet>
-  <Rectangle _x="123" _y="453" _width="60" _height="60" as="pageFormat" />
-  <ImageBox src="./warning.gif" width="16" height="16" as="warningImage" />
 </@NAME@>
 `;
 

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { expect } from '@jest/globals';
+import { expect } from 'vitest';
 import type { Cell, CellStyle, Geometry, GraphDataModel } from '../../src';
 
 type ExpectCellProperties = {

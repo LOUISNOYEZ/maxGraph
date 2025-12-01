@@ -14,21 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { afterEach, expect } from '@jest/globals';
+import { afterEach, expect } from 'vitest';
 import PolylineShape from '../../../../src/view/shape/edge/PolylineShape';
 import AbstractCanvas2D from '../../../../src/view/canvas/AbstractCanvas2D';
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 test('paintLine uses correct arc size', () => {
   const polylineShape = new PolylineShape([], 'red');
-  const addPoints = jest.spyOn(polylineShape, 'addPoints');
+  const addPoints = vi.spyOn(polylineShape, 'addPoints');
   // Mock only the methods used by PolylineShape.paintLine
   const canvas2D = {
-    begin: jest.fn(),
-    stroke: jest.fn(),
+    begin: vi.fn(),
+    stroke: vi.fn(),
   } as unknown as AbstractCanvas2D;
 
   polylineShape.paintLine(canvas2D, [], true);

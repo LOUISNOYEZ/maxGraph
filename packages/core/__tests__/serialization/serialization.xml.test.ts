@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { afterEach, beforeAll, describe, expect, test } from '@jest/globals';
+import { afterEach, beforeAll, describe, expect, test } from 'vitest';
 import { ModelChecker } from './utils';
 import { createGraphWithoutContainer } from '../utils';
 import {
