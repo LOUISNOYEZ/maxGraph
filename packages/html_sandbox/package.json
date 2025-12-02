@@ -1,0 +1,27 @@
+{
+  "name": "@maxgraph/html_sandbox",
+  "license": "Apache-2.0",
+  "private": true,
+  "description": "Storybook stories",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 8901",
+    "clear-cache": "rimraf node_modules/.cache",
+    "build": "tsc && storybook build --output-dir dist",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "~10.1.2",
+    "@storybook/addon-links": "~10.1.2",
+    "@storybook/addon-vitest": "~10.1.2",
+    "@storybook/html-vite": "~10.1.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "storybook": "~10.1.2",
+    "vite": "~6.4.1",
+    "vitest": "^4.0.14",
+    "playwright": "^1.57.0",
+    "@vitest/browser-playwright": "^4.0.14",
+    "@vitest/coverage-v8": "^4.0.14"
+  }
+}
