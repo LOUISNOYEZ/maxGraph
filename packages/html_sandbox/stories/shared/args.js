@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export const globalTypes = {
+export const graphContainerTypes = {
   width: {
     control: {
       type: 'range',
@@ -33,7 +33,7 @@ export const globalTypes = {
   },
 };
 
-export const globalValues = {
+export const graphContainerDefault = {
   height: 600,
   width: 800,
 };
@@ -45,7 +45,7 @@ export const rubberBandTypes = {
   },
 };
 
-export const rubberBandValues = {
+export const rubberBandDefault = {
   rubberBand: true,
 };
 
@@ -56,6 +56,6 @@ export const contextMenuTypes = {
   },
 };
 
-export const contextMenuValues = {
+export const contextMenuDefault = {
   contextMenu: false,
 };

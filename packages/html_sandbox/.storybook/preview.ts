@@ -14,39 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import { graphContainerTypes, rubberBandTypes } from '../stories/shared/args'
+import { graphContainerDefault, rubberBandDefault } from '../stories/shared/args'
+
 import type { Preview } from '@storybook/html-vite';
 
-const preview: Preview = {
+const preview = {
+  argTypes: ({ ...graphContainerTypes, ...rubberBandTypes } as Preview['argTypes']),
+  args: { ...graphContainerDefault, ...rubberBandDefault },
   parameters: {
-    globalTypes: {
-      container: {
-        width: {
-          control: {
-            type: 'range',
-            min: 100,
-            max: 1000,
-            step: 10,
-          },
-        },
-        height: {
-          control: {
-            type: 'range',
-            min: 100,
-            max: 1000,
-            step: 10,
-          },
-        },
-        rubberBand: {
-          type: 'boolean',
-          defaultValue: true,
-        },
-      },
-    },
-
     docs: {
+      source: { type: 'code' },
       codePanel: true,
     },
   },
-};
+} satisfies Preview;
 
 export default preview;
