@@ -19,6 +19,8 @@ import AnchorsDemo from './Anchors.ts';
 
 import type { Meta, StoryObj } from '@storybook/html-vite';
 
+import { within, userEvent } from '@storybook/test';
+
 const meta = {
   title: 'Connections/Anchors',
   component: AnchorsDemo,
@@ -34,4 +36,19 @@ const meta = {
 } satisfies Meta<typeof AnchorsDemo>;
 export default meta;
 
-export const Anchors : StoryObj<typeof meta> = {};
+export const Anchors : StoryObj<typeof meta> = {
+  play: async ({ canvasElement }) => {
+    const helloTextElt = await within(canvasElement).getByText('Hello,').parentElement;
+    await userEvent.hover(helloTextElt!);
+    const connPoint = await canvasElement.firstChild?.firstChild?.firstChild?.childNodes.item(3).childNodes.item(2).firstChild as HTMLElement;
+    console.log(connPoint);
+    await userEvent.pointer({coords: {clientX: 2, clientY: 3}})
+    await userEvent.pointer({target: connPoint})
+    await userEvent.pointer({keys: '[MouseLeft]', coords: {clientX: 2, clientY: 3}})
+//    await userEvent.pointer({keys: '[MouseLeft>]'})
+//    await userEvent.pointer({keys: '[MouseLeft>]', target: connPoint})
+//    const worldTestElt = await within(canvasElement).getByText('World!')
+//    await userEvent.pointer({keys: '[/MouseLeft]', target: worldTestElt})
+    //await userEvent.click(test);
+  }
+};

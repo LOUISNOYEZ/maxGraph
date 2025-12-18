@@ -82,6 +82,7 @@ export const AnchorsDemo = (args: Record<string, string>) => {
   graph.batchUpdate(() => {
     const v1 = graph.insertVertex({
       parent,
+      id: 'rect1',
       value: 'Hello,',
       position: [20, 20],
       size: [80, 30],
@@ -89,6 +90,7 @@ export const AnchorsDemo = (args: Record<string, string>) => {
     });
     const v2 = graph.insertVertex({
       parent,
+      id: 'rect2',
       value: 'World!',
       position: [200, 150],
       size: [80, 30],
@@ -101,6 +103,9 @@ export const AnchorsDemo = (args: Record<string, string>) => {
       target: v2,
     });
   });
+
+  container.firstElementChild?.setAttribute('role', 'img');
+  container.firstElementChild?.setAttribute('aria-label', 'test');
 
   return container;
 };
