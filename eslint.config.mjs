@@ -35,6 +35,7 @@ export default tsEslint.config(
       'packages/html/stashed/**',
       'packages/website/build/**',
       'packages/website/generated/**',
+      'packages/html_sandbox/**',
     ],
   },
 
