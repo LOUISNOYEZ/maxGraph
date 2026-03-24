@@ -1311,8 +1311,8 @@ export default class ConnectionHandler
       this.edgeState.style.entryX = constraint.point.x;
       this.edgeState.style.entryY = constraint.point.y;
     } else {
-      this.edgeState.style.entryX = 0;
-      this.edgeState.style.entryY = 0;
+      delete this.edgeState.style.entryX;
+      delete this.edgeState.style.entryY;
     }
 
     this.edgeState.absolutePoints = [null, this.currentState != null ? null : current];
@@ -1330,7 +1330,7 @@ export default class ConnectionHandler
       if (constraint == null) {
         constraint = this.graph.getConnectionConstraint(
           this.edgeState,
-          this.previous,
+          this.currentState,
           false
         );
       }
@@ -1740,6 +1740,7 @@ export default class ConnectionHandler
         }
 
         edge = this.insertEdge(parent as Cell, '', value, source, target, style);
+
 
         if (edge && source) {
           // Updates the connection constraints

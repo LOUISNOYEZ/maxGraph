@@ -33,18 +33,16 @@ import type { AbstractGraph } from '../AbstractGraph.js';
 // see https://github.com/Modernizr/Modernizr/issues/1894
 let supportsPassive = false;
 
+// Intercepts browser access of dummy event listener passive option.
 try {
   document.addEventListener(
     'test',
-    () => {
-      return;
-    },
-    Object.defineProperty &&
-      Object.defineProperty({}, 'passive', {
-        get: () => {
-          supportsPassive = true;
-        },
-      })
+    () => {},
+    Object.defineProperty({}, 'passive', {
+      get: () => {
+        supportsPassive = true;
+      },
+    })
   );
 } catch (e) {
   // ignore

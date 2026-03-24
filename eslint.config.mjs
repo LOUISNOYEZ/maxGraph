@@ -114,8 +114,14 @@ export default tsEslint.config(
   // See https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
   ...storybook.configs['flat/recommended'].map((config) => ({
     ...config,
-    files: ['packages/html/stories/**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
   })),
+
+  {
+    files: ['packages/html/stories/shared/configure.js'],
+    languageOptions: {
+      env: { browser: true },
+    }
+  },
 
   // Enables eslint-plugin-prettier, eslint-config-prettier and prettier/prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration.
   prettierRecommendedConfig

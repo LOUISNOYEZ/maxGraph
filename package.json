@@ -12,7 +12,8 @@
     "url": "https://github.com/maxGraph/maxGraph/issues"
   },
   "workspaces": [
-    "./packages/*"
+    "./packages/core",
+    "./packages/html"
   ],
   "scripts": {
     "dev": "node ./scripts/dev",

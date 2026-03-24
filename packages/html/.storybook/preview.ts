@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import { Graph } from '@maxgraph/core';
 import type { Preview } from '@storybook/html-vite';
 import {
   Client,
@@ -39,6 +40,15 @@ import {
   unregisterAllShapes,
   unregisterAllStencilShapes,
 } from '@maxgraph/core';
+
+import { graphManager } from './graphManager';
+import {
+  configureImagesBasePath,
+  createGraphContainer,
+} from '../stories/shared/configure';
+import { type RubberBandHandler } from '@maxgraph/core';
+
+configureImagesBasePath();
 
 const defaultLogger = new NoOpLogger();
 // if you want to debug using the browser console, use the following configuration
@@ -99,15 +109,14 @@ function destroyUnreleasedElements() {
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
-
+    actions: { argTypesRegex: '^on[A-Z].*', disable: true },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+      expanded: false,
     },
-
     docs: {
       codePanel: true,
       source: {
@@ -115,16 +124,34 @@ const preview: Preview = {
         language: 'typescript',
       },
     },
+    scenarioSetup: (container: HTMLElement) => {
+      new Graph(container);
+    },
   },
   decorators: [
-    // reset the global configurations, as they may have been globally changed in a story (for example, the Window story updates the logger configuration)
-    // inspired by https://github.com/storybookjs/storybook/issues/4997#issuecomment-447301514
-    (storyFn) => {
-      resetMaxGraphConfigs();
-      destroyUnreleasedElements();
-      return storyFn();
+    (story, context) => {
+      if (!graphManager.container) {
+        graphManager.container = createGraphContainer();
+      }
+      if (!graphManager.graph) {
+        graphManager.graph = context.parameters.scenarioSetup(graphManager.container);
+      }
+
+      return story();
     },
   ],
+  beforeEach: (context) => {
+    // reset the global configurations, as they may have been globally changed in a story (for example, the Window story updates the logger configuration)
+    // inspired by https://github.com/storybookjs/storybook/issues/4997#issuecomment-447301514
+    return () => {
+      graphManager.container?.remove();
+      graphManager.container = null;
+      graphManager.graph?.destroy();
+      graphManager.graph = null;
+      resetMaxGraphConfigs();
+      destroyUnreleasedElements();
+    };
+  },
 };
 
 export default preview;

@@ -21,8 +21,9 @@ const require = createRequire(import.meta.url);
 const config: StorybookConfig = {
   stories: [
     '../stories/**/Introduction.mdx',
-    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
-    '../stories/**/*.mdx',
+    //    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+    '../stories/scenarios/**/*.stories.ts',
+    //'../stories/**/*.mdx',
   ],
 
   core: {
@@ -34,6 +35,8 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-vitest'),
+    //    getAbsolutePath("@storybook/addon-a11y")
   ],
 
   framework: {
